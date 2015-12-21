@@ -5,6 +5,7 @@ public class minionStats : MonoBehaviour {
     //Combo Object set at spawn
     public int health, dmg;
     public float speed;
+    public GameObject gru;
     public GameObject comboObject;
 
     private styleCombos comboF;

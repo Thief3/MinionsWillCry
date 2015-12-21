@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class movement : MonoBehaviour {
-    [SerializeField]
-    private float speed;
+    public float speed;
     private Rigidbody2D rb;
     private Sprite[] spriteSheet;
     private SpriteRenderer sr;

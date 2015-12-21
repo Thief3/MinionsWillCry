@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class pistolShooting : MonoBehaviour {
-    [SerializeField]
-    private GameObject mainBullet;
+    public GameObject mainBullet;
 
 	// Update is called once per frame
 	void Update () {
@@ -16,6 +15,7 @@ public class pistolShooting : MonoBehaviour {
         if (Input.GetMouseButtonDown(0)) { //Left Click
             GameObject bullet = Instantiate(mainBullet, transform.position, Quaternion.identity) as GameObject;
             bullet.transform.rotation = transform.rotation;
+            bullet.GetComponent<friendlyBulletCollisions>().combo = GetComponent<gunStats>().combo;
         }
 
 	}

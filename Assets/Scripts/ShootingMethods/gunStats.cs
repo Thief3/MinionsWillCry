@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class bulletCollisions : MonoBehaviour {
+public class gunStats : MonoBehaviour {
+    public GameObject combo;
 
 	// Use this for initialization
 	void Start () {

@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class shotgunShooting : MonoBehaviour {
-    [SerializeField]
-    private GameObject mainBullet;
+    public GameObject mainBullet;
 
     // Update is called once per frame
     void Update() {
@@ -18,6 +17,7 @@ public class shotgunShooting : MonoBehaviour {
                 float bulletAngle = (Mathf.Atan2(direction.y, direction.x) + Random.Range(-(Mathf.PI / 4), (Mathf.PI / 4))) * Mathf.Rad2Deg;
 
                 GameObject bullet = Instantiate(mainBullet, transform.position, Quaternion.identity) as GameObject;
+                bullet.GetComponent<friendlyBulletCollisions>().combo = GetComponent<gunStats>().combo;
                 bullet.transform.rotation = Quaternion.AngleAxis(bulletAngle, Vector3.forward);
             }
         }

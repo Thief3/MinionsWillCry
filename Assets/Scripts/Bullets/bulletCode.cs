@@ -2,10 +2,8 @@
 using System.Collections;
 
 public class bulletCode : MonoBehaviour {
-    [SerializeField]
-    private float speed;
-    [SerializeField]
-    private int dmg;
+    public float speed;
+    public int dmg;
 
     private Rigidbody2D rb;
 

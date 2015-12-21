@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class cursor : MonoBehaviour {
-    [SerializeField]
-    private Texture2D cursorTexture;
+    public Texture2D cursorTexture;
     private CursorMode cursorMode = CursorMode.Auto;
     // Use this for initialization
     void Start() {

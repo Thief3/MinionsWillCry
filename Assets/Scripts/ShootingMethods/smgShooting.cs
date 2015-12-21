@@ -2,10 +2,8 @@
 using System.Collections;
 
 public class smgShooting : MonoBehaviour {
-    [SerializeField]
-    private GameObject mainBullet;
-    [SerializeField]
-    private float delayTime;
+    public GameObject mainBullet;
+    public float delayTime;
     private float deltaTime;
     
 
@@ -24,6 +22,7 @@ public class smgShooting : MonoBehaviour {
 
         if (Input.GetMouseButton(0) & deltaTime <= 0) { //Left Click
             GameObject bullet = Instantiate(mainBullet, transform.position, Quaternion.identity) as GameObject;
+            bullet.GetComponent<friendlyBulletCollisions>().combo = GetComponent<gunStats>().combo;
             bullet.transform.rotation = transform.rotation;
 
             deltaTime = delayTime;

@@ -30,7 +30,7 @@ public class minionStats : MonoBehaviour {
         }
     }
 
-    void DestroySelf() {
+    public void DestroySelf() {
         comboF.AddDeath();
         Destroy(gameObject);   
     }

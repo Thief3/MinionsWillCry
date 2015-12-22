@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class suicideCollisionAi : MonoBehaviour {
+public class explosionCollision : MonoBehaviour {
+    public int dmg;
 
 	// Use this for initialization
 	void Start () {
@@ -13,12 +14,17 @@ public class suicideCollisionAi : MonoBehaviour {
 	
 	}
 
-    void OnCollisionEnter2D(Collision2D coll) {
+    void OnTriggerEnter2D (Collider2D coll) {
+        Debug.Log("h");
         string tag = coll.gameObject.tag;
         if (tag == "Player") {
             coll.gameObject.GetComponent<gruStats>().LoseHealth(dmg);
-            Destroy(gameObject);
+        }
+        else if (tag == "Enemy") {
+            coll.gameObject.GetComponent<minionStats>().LoseHealth(dmg);
         }
 
+        Destroy(gameObject);
     }
+
 }

@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class spawner : MonoBehaviour {
-    public float radius;
+    public float radius; // If you change the camera zoom you must change this;
     public float spawnEveryXSecs;
     private float deltaTime;
     private float timer;

@@ -20,6 +20,8 @@ public class friendlyBulletCollisions : MonoBehaviour {
 
         }
 
-        Destroy(gameObject);
+        if (tag != "Player") {
+            Destroy(gameObject);
+        }
     }
 }

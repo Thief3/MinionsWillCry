@@ -4,7 +4,7 @@ using System.Collections;
 public class basicShooting : MonoBehaviour {
     protected Vector2 direction;
     public GameObject mainBullet;
-    private float width;
+    protected float width;
 
     // Use this for initialization
     virtual protected void Start () {

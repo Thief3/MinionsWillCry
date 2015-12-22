@@ -6,7 +6,7 @@ public class gruStart : MonoBehaviour {
     public GameObject startingGun;
     public float armLength;
     //public GameObject score;
-    //public GameObject spawner;
+    public GameObject spawnerPrefab;
     //public GameObject arm;
 
     // Use this for initialization
@@ -18,7 +18,8 @@ public class gruStart : MonoBehaviour {
         gun.GetComponent<gunStats>().combo = comboObject;
 
         //Instantiate(score);
-        //Instantiate(spawner);
+        GameObject spawnerObject = Instantiate(spawnerPrefab) as GameObject;
+        spawnerObject.transform.parent = transform;
 
         //GameObject armObject = Instantiate(arm) as GameObject;
         //armObject.transform.parent = transform;

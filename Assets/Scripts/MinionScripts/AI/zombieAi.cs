@@ -26,6 +26,7 @@ public class zombieAi : MonoBehaviour {
 
         target = GetComponent<minionStats>().gru;
 
+        requesting = true;
         seeker.StartPath(transform.position, target.transform.position, OnPathComplete);
     }
 
@@ -33,7 +34,7 @@ public class zombieAi : MonoBehaviour {
         path = p;
         currentWaypoint = 0;
         deltaTime = 0f;
-        Debug.Log("Path redone.");
+        //Debug.Log("Path redone.");
         requesting = false;
     }
 
@@ -45,11 +46,11 @@ public class zombieAi : MonoBehaviour {
 
         //seeker.StartPath(transform.position, target.transform.position, OnPathComplete);
         if (path == null) {
-            Debug.Log("Yeah it didn't work....");
+            //Debug.Log("Yeah it didn't work....");
             RedoPath();
         }
         else if (currentWaypoint >= path.vectorPath.Count) {
-            Debug.Log("Done...?");
+            //Debug.Log("Done...?");
             RedoPath();
             
         }
@@ -58,7 +59,7 @@ public class zombieAi : MonoBehaviour {
         rb.velocity = speed * dir;
 
         if (Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]) < distanceToNextWaypoint) {
-            Debug.Log("Next!");
+            //Debug.Log("Next!");
             currentWaypoint++;
         }
     }

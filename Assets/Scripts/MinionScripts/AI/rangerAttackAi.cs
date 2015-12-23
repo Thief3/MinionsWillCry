@@ -40,8 +40,11 @@ public class rangerAttackAi : MonoBehaviour {
             && chargeTimer >= chargeTime) {
 
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            GameObject laser = Instantiate(laserObj, transform.position, Quaternion.identity) as GameObject;
+            Vector3 laserPos = transform.position + new Vector3(0.06f, 0.09f, 0f);
+            GameObject laser = Instantiate(laserObj, laserPos, Quaternion.identity) as GameObject;
             laser.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            laser.transform.parent = transform;
+            laser.GetComponent<laserController>().angle = angle;
             laser.GetComponent<laserCollisions>().dmg = dmg;
 
             charging = false;

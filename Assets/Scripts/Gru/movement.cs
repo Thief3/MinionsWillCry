@@ -20,17 +20,14 @@ public class movement : MonoBehaviour {
         float horz = Input.GetAxisRaw("Horizontal");
         float vert = Input.GetAxisRaw("Vertical");
 
-        Debug.Log(horz);
-        Debug.Log(vert);
-
         rb.velocity = new Vector2(horz, vert) * speed;
 
-        if (horz == 0f && vert == 0f) {
-            anim.SetBool("moving", false);
-        }
-        else {
-            anim.SetBool("moving", true);
-        }
+       // if (horz == 0f && vert == 0f) {
+       //     anim.SetBool("moving", false);
+       // }
+       // else {
+       //     anim.SetBool("moving", true);
+       // }
 
 	}
 }

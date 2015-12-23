@@ -5,7 +5,7 @@ public class rangerAttackAi : MonoBehaviour {
     public float shotDistance;
     public float shotDelay;
     public float chargeTime;
-    public float laser;
+    public GameObject laserObj;
     private float chargeTimer;
     private bool charging;
     private float deltaTime;
@@ -18,7 +18,7 @@ public class rangerAttackAi : MonoBehaviour {
         charging = false;
         deltaTime = 0f;
         dmg = GetComponent<minionStats>().dmg;
-        target = GetComponent<rangerFollowAi>().target;
+        target = GetComponent<minionStats>().gru;
     }
 
     // Update is called once per frame
@@ -38,12 +38,14 @@ public class rangerAttackAi : MonoBehaviour {
 
         if (charging == true
             && chargeTimer >= chargeTime) {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, dir * shotDistance);
-            if (hit.collider.tag == "Player") {
-                hit.collider.gameObject.GetComponent<gruStats>().LoseHealth(dmg);
-            }
+
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            GameObject laser = Instantiate(laserObj, transform.position, Quaternion.identity) as GameObject;
+            laser.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            laser.GetComponent<laserCollisions>().dmg = dmg;
 
             charging = false;
+            chargeTimer = 0f;
 
         }
         else if (charging == true) {

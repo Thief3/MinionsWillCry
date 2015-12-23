@@ -6,8 +6,10 @@ public class movement : MonoBehaviour {
     private Rigidbody2D rb;
     private Sprite[] spriteSheet;
     private SpriteRenderer sr;
+    private Animator anim;
     // Use this for initialization
     void Start () {
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
 
@@ -18,7 +20,17 @@ public class movement : MonoBehaviour {
         float horz = Input.GetAxisRaw("Horizontal");
         float vert = Input.GetAxisRaw("Vertical");
 
+        Debug.Log(horz);
+        Debug.Log(vert);
+
         rb.velocity = new Vector2(horz, vert) * speed;
+
+        if (horz == 0f && vert == 0f) {
+            anim.SetBool("moving", false);
+        }
+        else {
+            anim.SetBool("moving", true);
+        }
 
 	}
 }

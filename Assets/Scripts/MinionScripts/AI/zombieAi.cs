@@ -14,6 +14,7 @@ public class zombieAi : MonoBehaviour {
 
     private int currentWaypoint;
     private Rigidbody2D rb;
+    private Animator anim;
 
     private bool requesting;
 
@@ -23,7 +24,7 @@ public class zombieAi : MonoBehaviour {
         deltaTime = 0f;
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-
+        
         target = GetComponent<minionStats>().gru;
 
         requesting = true;
@@ -44,7 +45,6 @@ public class zombieAi : MonoBehaviour {
             RedoPath();
         }
 
-        //seeker.StartPath(transform.position, target.transform.position, OnPathComplete);
         if (path == null) {
             //Debug.Log("Yeah it didn't work....");
             RedoPath();
@@ -55,7 +55,7 @@ public class zombieAi : MonoBehaviour {
             
         }
 
-        Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
+        Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized; /// We get it it's wrong.
         rb.velocity = speed * dir;
 
         if (Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]) < distanceToNextWaypoint) {
@@ -68,13 +68,7 @@ public class zombieAi : MonoBehaviour {
         if (requesting == false) {
             requesting = true;
             seeker.StartPath(transform.position, target.transform.position, OnPathComplete);
-            
-
         }
 
     }
-
-    //void OnCollisionEnter2D (Collision2D coll) {
-    //    RedoPath();
-   // }
 }

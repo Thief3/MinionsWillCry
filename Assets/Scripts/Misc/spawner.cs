@@ -6,10 +6,12 @@ public class spawner : MonoBehaviour {
     public float spawnEveryXSecs;
     private float deltaTime;
     private float timer;
-    public GameObject minionsPrefab;
+    private randomGen randomMinion;
+    private randomPrefab minionsPrefab;
 
 	// Use this for initialization
 	void Start () {
+        randomMinion = GetComponent<randomGen>();
         deltaTime = 0;
         timer = 0;
 	}
@@ -33,7 +35,10 @@ public class spawner : MonoBehaviour {
                     Random.Range(transform.position.y - radius, transform.position.y + radius));
             }
 
-            GameObject minion = Instantiate(minionsPrefab, spawnPos, Quaternion.identity) as GameObject;
+            minionsPrefab = randomMinion.GetRandom();
+            Debug.Log(minionsPrefab);
+
+            GameObject minion = Instantiate(minionsPrefab.prefab, spawnPos, Quaternion.identity) as GameObject;
             minion.GetComponent<minionStats>().gru = transform.parent.gameObject;
         }
     }

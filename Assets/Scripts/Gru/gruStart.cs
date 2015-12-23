@@ -2,22 +2,27 @@
 using System.Collections;
 
 public class gruStart : MonoBehaviour {
-    public GameObject combo;
+    public GameObject comboObject;
     public GameObject startingGun;
-    public float armLength;
     //public GameObject score;
     public GameObject spawnerPrefab;
-    //public GameObject arm;
+
+    public GameObject healthBar;
 
     // Use this for initialization
     void Start() {
-        GameObject comboObject = Instantiate(combo) as GameObject;
-        //Vector2 gunPos = new Vector2(transform.position.x + armLength, transform.position.y);
-        GameObject gun = Instantiate(startingGun, transform.position, Quaternion.identity) as GameObject;
-        gun.transform.parent = transform;
-        gun.GetComponent<gunStats>().combo = comboObject;
+        GameObject health = Instantiate(healthBar) as GameObject;
+        health.GetComponent<healthBar>().gru = gameObject;
 
-        //Instantiate(score);
+       // Instantiate(score);
+        GetComponent<gruStats>().combo = Instantiate(comboObject) as GameObject;
+        GetComponent<gruStats>().combof = GetComponent<gruStats>().combo.GetComponent<styleCombos>();
+        GameObject gun = GetComponent<gruStats>().gun;
+        gun = Instantiate(startingGun, transform.position, Quaternion.identity) as GameObject;
+        gun.transform.parent = transform;
+        gun.GetComponent<gunStats>().combo = GetComponent<gruStats>().combo;
+        //GetComponent<gruStats>().gunChange(startingGun);
+
         GameObject spawnerObject = Instantiate(spawnerPrefab) as GameObject;
         spawnerObject.transform.parent = transform;
 

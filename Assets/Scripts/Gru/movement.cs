@@ -22,12 +22,5 @@ public class movement : MonoBehaviour {
 
         rb.velocity = new Vector2(horz, vert) * speed;
 
-       // if (horz == 0f && vert == 0f) {
-       //     anim.SetBool("moving", false);
-       // }
-       // else {
-       //     anim.SetBool("moving", true);
-       // }
-
 	}
 }

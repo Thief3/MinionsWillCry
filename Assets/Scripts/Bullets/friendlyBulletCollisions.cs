@@ -17,11 +17,15 @@ public class friendlyBulletCollisions : MonoBehaviour {
         if (tag == "Enemy") {
             coll.gameObject.GetComponent<minionStats>().LoseHealth(dmg);
             comboF.AddHit();
-
+            Destroy(gameObject);
         }
 
         if (tag != "Player") {
             Destroy(gameObject);
         }
+    }
+
+    void OnInvisible() {
+        Destroy(gameObject);
     }
 }

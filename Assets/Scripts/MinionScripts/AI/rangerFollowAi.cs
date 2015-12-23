@@ -61,7 +61,7 @@ public class rangerFollowAi : MonoBehaviour {
     }
 
     void RedoPath(Vector3 targetPos) {
-        Debug.Log("Redone");
+        //Debug.Log("Redone");
         if (requesting == false) {
             requesting = true;
             seeker.StartPath(transform.position, targetPos, OnPathComplete);
@@ -89,7 +89,7 @@ public class rangerFollowAi : MonoBehaviour {
     void TranversePath(Vector2 targetPos) {
 
         Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
-        Debug.Log(dir);
+        //Debug.Log(dir);
         rb.velocity = speed * dir;
 
         if (Vector3.Distance(transform.position,

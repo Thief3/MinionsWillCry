@@ -6,9 +6,11 @@ public class rifleShooting : basicShooting {
     public int shotsInBurst;
     private float deltaTime;
     private int currentShots;
+    private bool bursting;
 
     override protected void Start() {
         base.Start();
+        bursting = false;
         deltaTime = 0;
         currentShots = 0;
     }
@@ -23,10 +25,15 @@ public class rifleShooting : basicShooting {
 
             deltaTime = delayTime;
             currentShots++;
+            if (bursting == false) {
+                sound.Play();
+                bursting = true;
+            }
         }
 
         if (Input.GetMouseButtonUp(0)) {
             currentShots = 0;
+            bursting = false;
         }
     }
 }

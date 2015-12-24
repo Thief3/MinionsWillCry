@@ -9,6 +9,7 @@ public class pistolShooting : basicShooting {
 
         if (Input.GetMouseButtonDown(0)) { //Left Click
             SpawnBullet();
+            sound.Play();
         }
 
 	}

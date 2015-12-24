@@ -17,5 +17,6 @@ public class shotgunShooting : basicShooting {
         float bulletAngle = (Mathf.Atan2(direction.y, direction.x) + Random.Range(-(Mathf.PI / 4), (Mathf.PI / 4))) * Mathf.Rad2Deg;
         base.SpawnBullet();
         bullet.transform.rotation = Quaternion.AngleAxis(bulletAngle, Vector3.forward);
+        sound.Play();
     }
 }

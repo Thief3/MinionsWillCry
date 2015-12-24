@@ -19,6 +19,7 @@ public class smgShooting : basicShooting {
 
         if (Input.GetMouseButton(0) & deltaTime <= 0) { //Left Click
             SpawnBullet();
+            sound.Play();
 
             deltaTime = delayTime;
         }

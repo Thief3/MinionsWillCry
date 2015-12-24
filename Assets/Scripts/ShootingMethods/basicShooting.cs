@@ -8,9 +8,11 @@ public class basicShooting : MonoBehaviour {
     protected GameObject bullet;
     protected SpriteRenderer sr;
     protected SpriteRenderer gruSr;
+    protected AudioSource sound;
 
     // Use this for initialization
     virtual protected void Start () {
+        sound = GetComponent<AudioSource>();
         width = GetComponent<SpriteRenderer>().sprite.rect.width;
         sr = GetComponent<SpriteRenderer>();
         gruSr = transform.parent.gameObject.GetComponent<SpriteRenderer>();
@@ -37,6 +39,8 @@ public class basicShooting : MonoBehaviour {
         bullet = Instantiate(mainBullet, bulletStartPoint, Quaternion.identity) as GameObject;
         bullet.transform.rotation = transform.rotation;
         bullet.GetComponent<friendlyBulletCollisions>().combo = GetComponent<gunStats>().combo;
+
+        
     }
 
     virtual protected void UpdateGunLayer() {

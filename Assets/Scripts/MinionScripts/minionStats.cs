@@ -34,6 +34,7 @@ public class minionStats : MonoBehaviour {
             anim.SetTrigger("Hit");
         }
         else {
+            health = 0;
             DestroySelf();
         }
     }

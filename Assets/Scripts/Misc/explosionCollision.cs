@@ -3,18 +3,12 @@ using System.Collections;
 
 public class explosionCollision : MonoBehaviour {
     public int dmg;
+   
+    void Start() {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    }
 
-    void OnTriggerEnter2D (Collider2D coll) {
+    void OnTriggerEnter2D(Collider2D coll) {
         string tag = coll.gameObject.tag;
         if (tag == "Player") {
             coll.gameObject.GetComponent<gruStats>().LoseHealth(dmg);
@@ -26,8 +20,6 @@ public class explosionCollision : MonoBehaviour {
         else if (tag == "Barrel") {
             coll.gameObject.GetComponent<barrel>().LoseHealth(dmg);
         }
-
-        Destroy(gameObject);
     }
 
 }

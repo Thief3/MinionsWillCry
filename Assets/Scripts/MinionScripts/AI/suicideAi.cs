@@ -14,6 +14,7 @@ public class suicideAi : MonoBehaviour {
 	void Update () {
 	    if (stats.health <= 0) {
             Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
 	}
 }

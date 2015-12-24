@@ -5,10 +5,11 @@ public class friendlyBulletCollisions : MonoBehaviour {
     public int dmg;
     public GameObject combo;
     private styleCombos comboF;
-
+    private Animator anim;
 
 	// Use this for initialization
 	void Start () {
+        anim = GetComponent<Animator>();
         comboF = combo.GetComponent<styleCombos>();
 	}
 	
@@ -25,6 +26,8 @@ public class friendlyBulletCollisions : MonoBehaviour {
 
 
         if (tag != "Player") {
+            anim.SetTrigger("Die");
+
             Destroy(gameObject);
         }
 

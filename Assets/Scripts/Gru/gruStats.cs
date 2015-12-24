@@ -6,6 +6,7 @@ public class gruStats : MonoBehaviour {
     public GameObject gun;
     public GameObject combo;
     public styleCombos combof;
+    public int numOfGrenades;
     private Animator anim;
     private Rigidbody2D rb;
     private bool died;

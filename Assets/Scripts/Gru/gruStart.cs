@@ -4,6 +4,7 @@ using System.Collections;
 public class gruStart : MonoBehaviour {
     public GameObject comboObject;
     public GameObject startingGun;
+    public GameObject startingSecondary;
     //public GameObject score;
     public GameObject spawnerPrefab;
 
@@ -22,6 +23,12 @@ public class gruStart : MonoBehaviour {
         gun.transform.parent = transform;
         gun.GetComponent<gunStats>().combo = GetComponent<gruStats>().combo;
         GetComponent<gruStats>().gun = gun;
+
+        GameObject grenadeToss = Instantiate(startingSecondary, transform.position, Quaternion.identity) as GameObject;
+
+        grenadeToss.transform.parent = transform;
+        grenadeToss.GetComponent<gunStats>().combo = GetComponent<gruStats>().combo;
+
         //GetComponent<gruStats>().gunChange(startingGun);
 
         GameObject spawnerObject = Instantiate(spawnerPrefab) as GameObject;

@@ -7,20 +7,21 @@ public class gruStart : MonoBehaviour {
     //public GameObject score;
     public GameObject spawnerPrefab;
 
-    public GameObject healthBar;
+    public GameObject gui;
 
     // Use this for initialization
     void Start() {
-        GameObject health = Instantiate(healthBar) as GameObject;
-        health.GetComponent<healthBar>().gru = gameObject;
+        GameObject guiInstance = Instantiate(gui) as GameObject;
+        guiInstance.GetComponent<healthBar>().gru = gameObject;
 
-       // Instantiate(score);
-        GetComponent<gruStats>().combo = Instantiate(comboObject) as GameObject;
-        GetComponent<gruStats>().combof = GetComponent<gruStats>().combo.GetComponent<styleCombos>();
-        GameObject gun = GetComponent<gruStats>().gun;
-        gun = Instantiate(startingGun, transform.position, Quaternion.identity) as GameObject;
+        GetComponent<gruStats>().combo = guiInstance;
+        GetComponent<gruStats>().combof = guiInstance.GetComponent<styleCombos>();
+
+        GameObject gun = Instantiate(startingGun, transform.position, Quaternion.identity) as GameObject;
+        
         gun.transform.parent = transform;
         gun.GetComponent<gunStats>().combo = GetComponent<gruStats>().combo;
+        GetComponent<gruStats>().gun = gun;
         //GetComponent<gruStats>().gunChange(startingGun);
 
         GameObject spawnerObject = Instantiate(spawnerPrefab) as GameObject;

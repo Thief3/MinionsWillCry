@@ -15,14 +15,17 @@ public class movementAnimation : MonoBehaviour {
 	void Update () {
         if (rb.velocity.x > 0) {
             anim.SetInteger("Walking", 1);
+            anim.ResetTrigger("BecomeIdle");
         }
 
         else if (rb.velocity.x < 0) {
             //Debug.Log("Hello?");
-            anim.SetInteger("Walking", (-1));
+            anim.SetInteger("Walking", -1);
+            anim.ResetTrigger("BecomeIdle");
         }
         else {
-            anim.SetInteger("Walking", 0);
+            anim.SetTrigger("BecomeIdle");
+            
         }
     }
 

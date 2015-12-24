@@ -6,6 +6,7 @@ public class friendlyBulletCollisions : MonoBehaviour {
     public GameObject combo;
     private styleCombos comboF;
 
+
 	// Use this for initialization
 	void Start () {
         comboF = combo.GetComponent<styleCombos>();
@@ -17,15 +18,19 @@ public class friendlyBulletCollisions : MonoBehaviour {
         if (tag == "Enemy") {
             coll.gameObject.GetComponent<minionStats>().LoseHealth(dmg);
             comboF.AddHit();
-            Destroy(gameObject);
         }
+        else if (tag == "Barrel") {
+            coll.gameObject.GetComponent<barrel>().LoseHealth(dmg);
+        }
+
 
         if (tag != "Player") {
             Destroy(gameObject);
         }
+
     }
 
-    void OnInvisible() {
+    void OnBecameInvisible() {
         Destroy(gameObject);
     }
 }

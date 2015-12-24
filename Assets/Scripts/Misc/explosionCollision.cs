@@ -15,13 +15,16 @@ public class explosionCollision : MonoBehaviour {
 	}
 
     void OnTriggerEnter2D (Collider2D coll) {
-        Debug.Log("h");
         string tag = coll.gameObject.tag;
         if (tag == "Player") {
             coll.gameObject.GetComponent<gruStats>().LoseHealth(dmg);
         }
+
         else if (tag == "Enemy") {
             coll.gameObject.GetComponent<minionStats>().LoseHealth(dmg);
+        }
+        else if (tag == "Barrel") {
+            coll.gameObject.GetComponent<barrel>().LoseHealth(dmg);
         }
 
         Destroy(gameObject);

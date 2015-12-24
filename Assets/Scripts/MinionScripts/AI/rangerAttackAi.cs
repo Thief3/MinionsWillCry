@@ -12,9 +12,11 @@ public class rangerAttackAi : MonoBehaviour {
     private GameObject target;
     private Vector3 dir;
     private int dmg;
+    private Animator anim;
 
     // Use this for initialization
     void Start() {
+        anim = GetComponent<Animator>();
         charging = false;
         deltaTime = 0f;
         dmg = GetComponent<minionStats>().dmg;
@@ -39,11 +41,22 @@ public class rangerAttackAi : MonoBehaviour {
         if (charging == true
             && chargeTimer >= chargeTime) {
 
+            Vector3 laserPos = new Vector3 (0f, 0f, 0f);
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            Vector3 laserPos = transform.position + new Vector3(0.06f, 0.09f, 0f);
-            GameObject laser = Instantiate(laserObj, laserPos, Quaternion.identity) as GameObject;
+            if (anim.GetInteger("Walking") == 1) {
+                //Debug.Log("Moving 1");
+                laserPos = new Vector3(0.05f, 0.07f, 0f);
+            }
+            else if (anim.GetInteger("Walking") == -1) {
+                //Debug.Log("Moving -1");
+                laserPos = new Vector3(-0.05f, 0.08f, 0f);
+            }
+            GameObject laser = Instantiate(laserObj, transform.position, Quaternion.identity) as GameObject;
             laser.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             laser.transform.parent = transform;
+
+            laser.transform.localPosition = laserPos;
+
             laser.GetComponent<laserController>().angle = angle;
             laser.GetComponent<laserCollisions>().dmg = dmg;
 

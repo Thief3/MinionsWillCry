@@ -4,22 +4,37 @@ using System.Collections;
 public class gruStats : MonoBehaviour {
     public int health;
     public GameObject gun;
+    public GameObject grenadeToss;
     public GameObject combo;
     public styleCombos combof;
     public int numOfGrenades;
+    public Canvas GameOver;
+    public GameObject ui;
+    public float waitAfterDeath;
     private Animator anim;
     private Rigidbody2D rb;
     private bool died;
+    private float timer;
 
 	// Use this for initialization
 	void Start () {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        died = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
-	
+	    if (died) {
+            timer += Time.deltaTime;
+            if (timer >= waitAfterDeath) {
+                ui.SetActive(false);
+
+                Instantiate(GameOver);
+
+                gameObject.SetActive(false);
+            }
+        }
 	}
 
     public void LoseHealth(int hitValue) {
@@ -39,7 +54,13 @@ public class gruStats : MonoBehaviour {
     }
 
     public void DestroySelf() {
-        anim.SetTrigger("Die");
+        if (!died) {
+            anim.SetTrigger("Die");
+            timer = 0f;
+            Destroy(gun);
+            Destroy(grenadeToss);
+            died = true;
+        }
     }
 
     public void gunChange(GameObject gunPrefab) {

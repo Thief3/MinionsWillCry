@@ -14,6 +14,7 @@ public class gruStart : MonoBehaviour {
     void Start() {
         GameObject guiInstance = Instantiate(gui) as GameObject;
         guiInstance.GetComponent<healthBar>().gru = gameObject;
+        GetComponent<gruStats>().ui = guiInstance;
 
         GetComponent<gruStats>().combo = guiInstance;
         GetComponent<gruStats>().combof = guiInstance.GetComponent<styleCombos>();
@@ -25,7 +26,7 @@ public class gruStart : MonoBehaviour {
         GetComponent<gruStats>().gun = gun;
 
         GameObject grenadeToss = Instantiate(startingSecondary, transform.position, Quaternion.identity) as GameObject;
-
+        GetComponent<gruStats>().grenadeToss = grenadeToss;
         grenadeToss.transform.parent = transform;
         grenadeToss.GetComponent<gunStats>().combo = GetComponent<gruStats>().combo;
 

@@ -14,8 +14,13 @@ public class minionStats : MonoBehaviour {
     private styleCombos comboF;
     private Animator anim;
 
+    private float timer;
+    private bool died;
+
     // Use this for initialization
     void Start () {
+        timer = 0f;
+        died = false;
         anim = GetComponent<Animator>();
         randomDrop = GetComponent<randomGen>();
         comboObject = gru.GetComponent<gruStats>().combo;
@@ -25,7 +30,18 @@ public class minionStats : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+	    if (died) {
+            timer += Time.deltaTime;
+            if (timer >= anim.playbackTime) {
+                selectedDrop = randomDrop.GetRandom();
+
+                if (selectedDrop != null) {
+                    Instantiate(selectedDrop.prefab, transform.position, Quaternion.identity);
+                }
+
+                Destroy(gameObject);
+            }
+        }
 	}
     
     public void LoseHealth(int hitValue) {
@@ -42,13 +58,8 @@ public class minionStats : MonoBehaviour {
     public void DestroySelf() {
         anim.SetTrigger("Die");
         comboF.AddDeath();
-        selectedDrop = randomDrop.GetRandom();
 
-        if (selectedDrop != null) {
-            Instantiate(selectedDrop.prefab, transform.position, Quaternion.identity);
-        }
-
-        Destroy(gameObject);   
+        died = true;
     }
 
 

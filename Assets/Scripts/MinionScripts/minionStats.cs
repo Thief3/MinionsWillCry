@@ -12,9 +12,11 @@ public class minionStats : MonoBehaviour {
     private randomPrefab selectedDrop;
 
     private styleCombos comboF;
+    private Animator anim;
 
     // Use this for initialization
     void Start () {
+        anim = GetComponent<Animator>();
         randomDrop = GetComponent<randomGen>();
         comboObject = gru.GetComponent<gruStats>().combo;
         comboF = comboObject.GetComponent<styleCombos>();
@@ -29,6 +31,7 @@ public class minionStats : MonoBehaviour {
     public void LoseHealth(int hitValue) {
         if (health - hitValue > 0) {
             health -= hitValue;
+            anim.SetTrigger("Hit");
         }
         else {
             DestroySelf();
@@ -36,6 +39,7 @@ public class minionStats : MonoBehaviour {
     }
 
     public void DestroySelf() {
+        anim.SetTrigger("Die");
         comboF.AddDeath();
         selectedDrop = randomDrop.GetRandom();
 

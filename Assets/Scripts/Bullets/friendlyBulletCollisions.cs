@@ -6,12 +6,25 @@ public class friendlyBulletCollisions : MonoBehaviour {
     public GameObject combo;
     private styleCombos comboF;
     private Animator anim;
+    private bool died;
+    private float timer;
+    public float deathTime;
 
 	// Use this for initialization
 	void Start () {
+        died = false;
         anim = GetComponent<Animator>();
         comboF = combo.GetComponent<styleCombos>();
 	}
+
+    void Update() {
+        if (died) {
+            timer += Time.deltaTime;
+            if (timer >= deathTime) {
+                Destroy(gameObject);
+            }
+        }
+    }
 	
     void OnCollisionEnter2D (Collision2D coll) {
         string tag = coll.gameObject.tag;
@@ -28,7 +41,7 @@ public class friendlyBulletCollisions : MonoBehaviour {
         if (tag != "Player") {
             anim.SetTrigger("Die");
 
-            Destroy(gameObject);
+            died = true;
         }
 
     }

@@ -28,14 +28,10 @@ public class styleCombos : MonoBehaviour {
         }
 
         // Make this customisable later
-        Debug.Log("Hello?");
-        for (int i = 0; i < styleRanks.Length; i++) {
-            Debug.Log(i);
-        }
         for(int i = 0; i < styleRanks.Length; i++) {
-            Debug.Log("entering loop");
+            //Debug.Log("entering loop");
             if (stylePoints >= styleRanks[i].minThresold) {
-                Debug.Log("Entered if");
+               // Debug.Log("Entered if");
                 comboText.text = styleRanks[i].text;
                 i = styleRanks.Length;
             }
@@ -62,9 +58,9 @@ public class styleCombos : MonoBehaviour {
     public void AddDeath() {
         //score.AddToScore()
         stylePoints += stylishMulti;
-        Debug.Log("SPoints: " + stylePoints.ToString());
-        Debug.Log("SMulti: " + stylishMulti.ToString());
-        Debug.Log("Points To Add: " + Mathf.Floor(stylePoints * basePerKill).ToString());
+       // Debug.Log("SPoints: " + stylePoints.ToString());
+      //  Debug.Log("SMulti: " + stylishMulti.ToString());
+       // Debug.Log("Points To Add: " + Mathf.Floor(stylePoints * basePerKill).ToString());
         score.AddToScore(Mathf.Floor(stylishMulti * basePerKill));
     }
 

@@ -6,6 +6,8 @@ public class spawner : MonoBehaviour {
     public float spawnEveryXSecs;
     private float deltaTime;
     private float timer;
+    public float tileWidth, tileHeight;
+    public float width, height;
     private randomGen randomMinion;
     private randomPrefab minionsPrefab;
 
@@ -24,15 +26,24 @@ public class spawner : MonoBehaviour {
         if(deltaTime >= spawnEveryXSecs) {
             deltaTime -= spawnEveryXSecs;
 
-            Vector2 spawnPos = transform.position;
-            while (!((Camera.main.WorldToViewportPoint(spawnPos).x < 0
-                || Camera.main.WorldToViewportPoint(spawnPos).x > 1)
-                && (Camera.main.WorldToViewportPoint(spawnPos).y < 0
-                || Camera.main.WorldToViewportPoint(spawnPos).y > 1))){
+            Vector2 spawnPos = new Vector2(
+                   transform.position.x + Random.Range(-radius, radius),
+                   transform.position.y + Random.Range(-radius, radius));
+
+            while (
+                (!(Camera.main.WorldToViewportPoint(spawnPos).x > 1)
+                || !(Camera.main.WorldToViewportPoint(spawnPos).x < 0))
+
+                && (!(Camera.main.WorldToViewportPoint(spawnPos).y > 1)
+                || !(Camera.main.WorldToViewportPoint(spawnPos).y < 0))
+
+                && !((spawnPos.x > -tileWidth * (width + 2) / 2 / 2  && spawnPos.x < tileWidth * (width - 2) / 2 / 2)
+                && (spawnPos.y > -tileHeight * (height + 2) / 2 / 2 && spawnPos.y < tileHeight * (height - 2)/ 2 / 2))) {
 
                 spawnPos = new Vector2(
-                    Random.Range(transform.position.x - radius, transform.position.x + radius),
-                    Random.Range(transform.position.y - radius, transform.position.y + radius));
+                    transform.position.x + Random.Range(-radius, radius),
+                    transform.position.y + Random.Range(-radius, radius));
+
             }
 
             minionsPrefab = randomMinion.GetRandom();

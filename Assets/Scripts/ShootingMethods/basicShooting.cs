@@ -9,6 +9,7 @@ public class basicShooting : MonoBehaviour {
     protected SpriteRenderer sr;
     protected SpriteRenderer gruSr;
     protected AudioSource sound;
+    protected gunStats stats;
 
     // Use this for initialization
     virtual protected void Start () {
@@ -16,6 +17,7 @@ public class basicShooting : MonoBehaviour {
         width = GetComponent<SpriteRenderer>().sprite.rect.width;
         sr = GetComponent<SpriteRenderer>();
         gruSr = transform.parent.gameObject.GetComponent<SpriteRenderer>();
+        stats = GetComponent<gunStats>();
     }
 	
 	// Update is called once per frame
@@ -50,6 +52,14 @@ public class basicShooting : MonoBehaviour {
         else {
             sr.sortingOrder = gruSr.sortingOrder + 1;
         }
+
+        if (direction.x >= 0) {
+            sr.sprite = stats.right;
+        }
+        else {
+            sr.sprite = stats.left;
+        }
+
     }
 
 }

@@ -5,9 +5,10 @@ public class barrel : MonoBehaviour {
     public GameObject releasesPrefab;
     public int health;
     private Animator anim;
-
+    private bool died;
 	// Use this for initialization
 	void Start () {
+        died = false;
         anim = GetComponent<Animator>();
 	}
 	
@@ -25,13 +26,15 @@ public class barrel : MonoBehaviour {
 
         if (health - dmg <= 0) {
             //die animation;
-            if (releasesPrefab != null) {
-                Instantiate(releasesPrefab, transform.position, Quaternion.identity);
+            if (died == false) {
+                if (releasesPrefab != null) {
+                    Instantiate(releasesPrefab, transform.position, Quaternion.identity);
+                }
+
+                anim.SetTrigger("Die");
+                died = true;
             }
-
-            anim.SetTrigger("Die");
-
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }

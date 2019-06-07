@@ -19,5 +19,5 @@ Try to kill as many things as you can. Staying stylish and changing stuff around
 
 Have fun minion slayer.
 
-Art Credited to Joshua Robertson (https://github.com/JRob774)
+Art Credited to Joshua Robertson (https://github.com/thatb0y)
 

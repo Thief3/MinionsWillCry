@@ -3,7 +3,7 @@ Minions Will Cry
 
 A game made a few years ago by myself and my friend in a minions themed weekend game-jam using Unity.
 
-![Splash](readme_resources/minions_thumbnail.png)
+![Splash](readme_resources/thumbnail.png)
 
 ![Demo](readme_resources/demo.gif)
 
